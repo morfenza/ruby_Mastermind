@@ -25,4 +25,8 @@ class Codemaker
       @clues.push(@code[idx] == num ? 'red' : 'white')
     end
   end
+
+  def won?(guess)
+    guess.eql?(code)
+  end
 end
