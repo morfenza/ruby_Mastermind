@@ -2,31 +2,42 @@
 
 require_relative 'codebreaker'
 require_relative 'codemaker'
-require_relative 'display'
+require_relative 'check'
+require_relative 'messages'
 
 # class defining the game logic
 class Game
-  include Display
+  include Check
+  include Messages
 
-  attr_reader :pc, :player
+  attr_reader :codemaker, :player
 
   def create_game
-    @pc = Codemaker.new
+    @codemaker = Codemaker.new
     @player = Codebreaker.new
 
-    pc.create_code
+    codemaker.create_code
   end
 
-  def play_match; end
+  def play_match
+    round_num = 1
+    while round_num <= 12
+      if play_round(round_num)
+        display_victory
+        return
+      end
+      round_num += 1
+    end
+    display_failure(codemaker.code)
+  end
 
   def play_round(round_num)
-    player.guess_code(ask_for_guess(round_num))
-    pc.check_guess(player.guess)
-    display_round(player.guess, pc.clues)
-    p pc
+    @player.guess_code(ask_for_guess(round_num))
+    return true if @codemaker.won?(@player.guess)
+
+    @codemaker.check_guess(@player.guess)
+    display_round(@player.guess, @codemaker.clues)
+    @codemaker.clues.clear
+    false
   end
 end
-
-g = Game.new
-g.create_game
-g.play_round(1)
