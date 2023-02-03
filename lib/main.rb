@@ -16,11 +16,11 @@ def game_loop
   loop do
     welcome_message
     if Check.ask_for_game_modes == 1
-      #tba
-    else
       game = GameOption1.new
       game.create_game
       game.play_match
+    else
+      #tba
     end
 
     break unless Check.play_again?
