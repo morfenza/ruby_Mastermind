@@ -4,8 +4,7 @@
 class Codemaker
   attr_reader :code, :code_hash, :clues
 
-  def create_code
-    @code = Array.new(4) { rand(1..6) }
+  def create_code(code)
     @code_hash = code.each_with_object(Hash.new(0)) do |num, hash|
       hash[num] += 1
     end
@@ -24,9 +23,5 @@ class Codemaker
 
       @clues.push(@code[idx] == num ? 'red' : 'white')
     end
-  end
-
-  def won?(guess)
-    guess.eql?(code)
   end
 end
