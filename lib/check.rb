@@ -31,7 +31,7 @@ module Check
   end
 
   def ask_for_code
-    puts 'Please write four numbers from 1 to 6 (1..6), it will the master code!'
+    puts "Please write four numbers from 1 to 6 (1..6), it'll be the master code!"
 
     input_loop
   end
