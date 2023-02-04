@@ -15,13 +15,9 @@ include Messages
 def game_loop
   loop do
     welcome_message
-    if Check.ask_for_game_modes == 1
-      game = GameOption1.new
-      game.create_game
-      game.play_match
-    else
-      #tba
-    end
+    game = Check.ask_for_game_modes == 1 ? GameOption1.new : GameOption2.new
+    game.create_game
+    game.play_match
 
     break unless Check.play_again?
   end
