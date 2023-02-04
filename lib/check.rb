@@ -5,8 +5,8 @@ module Check
   def self.ask_for_game_modes
     puts <<~OPTIONS
 
-      -> Press '1' if you want to be the codeMAKER
-      -> Press '2' if you want to be the codeBREAKER
+      -> Press '1' if you want to be the codeBREAKER
+      -> Press '2' if you want to be the codeMAKER
 
     OPTIONS
 
