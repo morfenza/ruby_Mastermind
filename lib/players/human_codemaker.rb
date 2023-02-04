@@ -6,6 +6,6 @@ require_relative '../base/codemaker'
 class HumanCodemaker < Codemaker
   def create_code(code)
     @code = code.split('').map(&:to_i)
-    super
+    super()
   end
 end

@@ -6,6 +6,6 @@ require_relative '../base/codemaker'
 class MachineCodemaker < Codemaker
   def create_code
     @code = Array.new(4) { rand(1..6) }
-    super
+    super()
   end
 end
