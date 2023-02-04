@@ -27,16 +27,17 @@ class GameOption2
         return
       end
       round_num += 1
+      sleep(1)
     end
     display_failure_for_machine
   end
 
   def play_round(round_num)
-    @codemaker.guess_code(round_num, @codemaker.clues)
-    return true if won?(@codemaker.guess)
+    @codebreaker.guess_code(round_num, @codemaker.clues)
+    return true if won?(@codemaker.code, @codebreaker.guess)
 
-    @codemaker.check_guess(@codemaker.guess)
-    display_round(@codemaker.guess, @codemaker.clues)
+    @codemaker.check_guess(@codebreaker.guess)
+    display_round(@codebreaker.guess, @codemaker.clues)
     false
   end
 end
