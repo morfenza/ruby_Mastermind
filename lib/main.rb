@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'game_option1'
-require_relative 'game_option2'
-require_relative 'check'
-require_relative 'messages'
+require_relative 'game_options/game_option1'
+require_relative 'game_options/game_option2'
+require_relative 'modules/check'
+require_relative 'modules/messages'
 
 # rubocop:disable Style/MixinUsage
 include Messages
@@ -15,8 +15,9 @@ include Messages
 def game_loop
   loop do
     welcome_message
-    game = Check.ask_for_game_modes == 1 ? GameOption1.new : GameOption2.new
-    game.create_game
+    option = Check.ask_for_game_modes
+    game = option == 1 ? GameOption1.new : GameOption2.new
+    game.create_game(option)
     game.play_match
 
     break unless Check.play_again?
