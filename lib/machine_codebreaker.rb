@@ -13,5 +13,8 @@ class MachineCodebreaker < Codebreaker
   end
   # rubocop:enable Lint/MissingSuper
 
-  def guess_code(round_num, clues); end
+  def guess_code(round_num, clues)
+    clues.clear
+    self.guess = Array.new(4) { rand(1..6) }
+  end
 end
