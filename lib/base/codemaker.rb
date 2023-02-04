@@ -4,6 +4,13 @@
 class Codemaker
   attr_reader :code, :code_hash, :clues
 
+  def create_code(code)
+    @code_hash = code.each_with_object(Hash.new(0)) do |num, hash|
+      hash[num] += 1
+    end
+    @clues = []
+  end
+
   def check_guess(guess)
     aux = Hash.new(0)
 
