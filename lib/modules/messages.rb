@@ -17,29 +17,22 @@ module Messages
     puts
   end
 
-  def display_options
-    loop do
-      puts <<~OPTIONS
-
-        -> Press '1' if you want to be the codeBREAKER
-        -> Press '2' if you want to be the codeMAKER
-
-      OPTIONS
-      option = gets.chomp.to_i
-      return option if [1, 2].include?(option)
-
-      puts 'Choose a valid option!'
-    end
-  end
-
-  def display_victory
+  def display_victory_for_player
     puts "\n\tYou've won! You deciphred the code!\n"
   end
 
-  def display_failure(code)
+  def display_failure_for_player(code)
     puts "You've lost! The code was:\n"
     code.each { |num| print "#{color_number(num)}\s" }
     puts
+  end
+
+  def display_victory_for_machine
+    puts "\n\tThe machine won! It deciphred the code!\n"
+  end
+
+  def display_failure_for_machine
+    puts "\n\tYou've won! The machine couldn't decipher the code!\n"
   end
 
   def display_round(guess, clues)
