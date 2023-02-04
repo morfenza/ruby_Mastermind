@@ -4,24 +4,37 @@
 class Codemaker
   attr_reader :code, :code_hash, :clues
 
-  def create_code(code)
-    @code_hash = code.each_with_object(Hash.new(0)) do |num, hash|
-      hash[num] += 1
-    end
+  def create_code
     @clues = []
   end
 
   def check_guess(guess)
-    aux = Hash.new(0)
+    red_pegs_number = count_red_pegs(guess)
+    white_pegs_number = count_white_pegs(guess, red_pegs_number)
 
-    guess.each_with_index do |num, idx|
-      aux[num] += 1
-      if aux[num] > @code_hash[num] || !@code_hash.include?(num)
-        @clues << 'none'
-        next
-      end
+    # Add the clues
+    red_pegs_number.times { @clues << 'red' }
+    white_pegs_number.times { @clues << 'white' }
+  end
+end
 
-      @clues.push(@code[idx] == num ? 'red' : 'white')
+def count_red_pegs(guess)
+  # Count the numbers on the exact position
+  pairs = @code.zip(guess)
+  pairs.select { |pair| pair[0] == pair[1] }.count
+end
+
+def count_white_pegs(guess, red_pegs_number)
+  # Count the number that appear regardless of position
+  inexact_white_pegs = 0
+  code_clone = @code.clone # If I passed @code, it would alter the original one!
+  guess.each do |digit|
+    # For each digit count one and remove to not count twice
+    if code_clone.include?(digit)
+      code_clone.delete_at(code_clone.index(digit)) # delete would remove ALL
+      inexact_white_pegs += 1
     end
   end
+  # The difference is the real white_pegs number
+  inexact_white_pegs - red_pegs_number
 end
