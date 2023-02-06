@@ -4,9 +4,10 @@ Project: Mastermind, from [The Odin Project](https://www.theodinproject.com/abou
 I created a Mastermind game using Ruby so you can play it versus the computer in the console!
 
 ## Links
-- [Play the game on Replit! TBA]()
+- [Play the game on Replit!](https://replit.com/@morfenza/rubyMastermind?v=1)
 - [Link to the assignment](https://www.theodinproject.com/lessons/ruby-mastermind)
 
-## Notes
-- Trying to create a better IA to play against!
-- Needs the gem Colorize to work (I'll bundle it later)
+## Playing Locally
+```console
+bundle exec ruby lib/main.rb
+```
