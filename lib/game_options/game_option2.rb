@@ -20,11 +20,13 @@ class GameOption2 < Game
   end
 
   def play_round(round_num)
-    @codebreaker.guess_code(round_num, @codemaker.clues)
-    return true if won?(@codemaker.code, @codebreaker.guess)
-
+    p @codebreaker.guess
     @codemaker.check_guess(@codebreaker.guess)
     display_round(@codebreaker.guess, @codemaker.clues)
+    return true if won?(@codemaker.code, @codebreaker.guess)
+
+    @codebreaker.guess_code(round_num, @codemaker.clues)
+
     false
   end
 end
