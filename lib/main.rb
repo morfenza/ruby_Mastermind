@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'bundler/setup'
+
 require_relative 'game_options/game_option1'
 require_relative 'game_options/game_option2'
 require_relative 'modules/check'
