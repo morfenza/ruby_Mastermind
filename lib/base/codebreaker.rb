@@ -5,6 +5,6 @@ class Codebreaker
   attr_accessor :guess
 
   def guess_code(guess)
-    @guess = guess.split('').map(&:to_i)
+    self.guess = guess.split('').map(&:to_i)
   end
 end
